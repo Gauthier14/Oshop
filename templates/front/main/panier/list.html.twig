@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Mon Pannier</h1>
+
+    <a href="{{path('app_panier_empty')}}" class="btn btn-sm btn-danger mb-3">Vider le pannier</a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Prix</th>
+                <th class="col-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in app.session.get('panier') %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td><img class="img-fluid" src="{{ asset(product.picture) }}"></a></td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <form action="{{ path('app_panier_remove', {id: product.id}) }}" method="POST">
+                            <button class="btn btn-danger btn-sm">
+                                <i class="">Supprimer</i>
+                            </button>
+                        </form>                    
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="13">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

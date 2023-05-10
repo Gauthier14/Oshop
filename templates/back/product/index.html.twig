@@ -1,0 +1,52 @@
+{% extends 'back/layout_back.html.twig' %}
+
+{% block title %}Product index
+{% endblock %}
+
+{% block body %}
+
+				<h1>Liste des produits</h1>
+
+                <a href="{{path('app_product_new')}}" class="btn btn-sm btn-success mb-3">Ajouter un produit</a>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Picture</th>
+							<th>Price</th>
+							<th>Rate</th>
+							<th>Status</th>
+							<th class="col-2">actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for product in products %}
+							<tr>
+								<td>{{ product.id }}</td>
+								<td>{{ product.name }}</td>
+								<td>{{ product.description }}</td>
+								<td><img class="img-fluid" src="{{ asset(product.picture) }}"></a></td>
+								<td>{{ product.price }}</td>
+								<td>{{ product.rate}}</td>
+								<td>{% if product.status == 1 %} En Stock {% else %} Rupture de Stock {% endif %}</td>
+								<td>
+									<a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-sm btn-primary me-3">Afficher</a>
+									<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="13">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+
+
+
+{% endblock %}
+

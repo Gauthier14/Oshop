@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+
+{% block sub_nav %}
+
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_product_index')}}">Produits</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="">Catégories</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="">Types</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="">Marques</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('app_user_index')}}">Utilisateurs</a>
+    </li>
+</ul>
+
+{% endblock %}

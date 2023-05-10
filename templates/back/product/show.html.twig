@@ -1,0 +1,66 @@
+{% extends 'back/layout_back.html.twig' %}
+
+{% block title %}Product
+{% endblock %}
+
+{% block body %}
+				<h1>Product</h1>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Id</th>
+							<td>{{ product.id }}</td>
+						</tr>
+						<tr>
+							<th>Name</th>
+							<td>{{ product.name }}</td>
+						</tr>
+						<tr>
+							<th>Description</th>
+							<td>{{ product.description }}</td>
+						</tr>
+						<tr>
+							<th>Picture</th>
+							<td><img class="img-fluid"src="{{ product.picture }}" alt=""></td>
+						</tr>
+						<tr>
+							<th>Price</th>
+							<td>{{ product.price }}</td>
+						</tr>
+						<tr>
+							<th>Rate</th>
+							<td>{{ product.rate }}</td>
+						</tr>
+						<tr>
+							<th>Status</th>
+							<td>{% if product.status == 1  %}En stock {% else %}
+                                En rupture de stock {% endif %}</td>
+						</tr>
+						<tr>
+							<th>Date de création</th>
+							<td>{{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Marque</th>
+							<td>{{ product.brand.name }}</td>
+						</tr>
+						<tr>
+							<th>Catégorie</th>
+							<td>{{ product.category.name }}</td>
+						</tr>
+						<tr>
+							<th>Type</th>
+							<td>{{ product.type.name }}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<a href="{{ path('app_product_index') }}">back to list</a>
+
+				<a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+
+				{{ include('back/product/_delete_form.html.twig') }}
+{% endblock %}
+
+
